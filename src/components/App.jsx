@@ -13,8 +13,6 @@ class App extends React.Component {
       videolist: window.exampleVideoData,
       video: window.exampleVideoData[0],   
     };
-    
-   
   }
   
   componentDidMount() {
@@ -35,12 +33,17 @@ class App extends React.Component {
   }
   
   getVideos(query) {
-    console.log(query);
+    var inputVal = document.getElementsByClassName('form-control');
+    this.options.query = inputVal[0].value || 'dogs';
+    this.props.searchYouTube(this.options, (videos) => {
+      this.setState({
+        videolist: videos,
+        video: videos[0],
+      });
+    });
   }
   
   render() {
-    // console.log(Object.keys(x));
-      
     return (
      <div>
     <nav className="navbar">
