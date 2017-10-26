@@ -6,7 +6,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      videolist : window.exampleVideoData,
+      videolist: window.exampleVideoData,
       video: window.exampleVideoData[0],   
     };
   }
