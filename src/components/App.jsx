@@ -6,7 +6,7 @@ class App extends React.Component {
     super(props);
     this.options = {
       key: 'AIzaSyCqoNpdRDG7Q5YvS45V7UqP15601f3gkUQ',
-      query: null,
+      query: '',
       max: 5
     },
     this.state = {
@@ -16,7 +16,7 @@ class App extends React.Component {
   }
   
   componentDidMount() {
-    this.getVideos('Dogs');
+    this.getVideos();
   }
   
   selectItem(video) {
@@ -25,19 +25,13 @@ class App extends React.Component {
     });
   }
   
-  changeItems(videos) {
-    console.log(videos);
-    this.setState({
-      videolist: videos,
-    });
-  }
-  
   getVideos() {
     var inputVal = document.getElementsByClassName('form-control');
-    if (inputVal[0] !== undefined) {
-      this.options.query = inputVal[0].value;
-    } else {
+    console.log(inputVal[0].value);
+    if (inputVal[0].value === '') {
       this.options.query = 'Dogs';
+    } else {
+      this.options.query = inputVal[0].value;
     }
     this.props.searchYouTube(this.options, (videos) => {
       this.setState({
