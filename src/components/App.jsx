@@ -32,9 +32,13 @@ class App extends React.Component {
     });
   }
   
-  getVideos(query) {
+  getVideos() {
     var inputVal = document.getElementsByClassName('form-control');
-    this.options.query = inputVal[0].value || 'dogs';
+    if (inputVal[0] !== undefined) {
+      this.options.query = inputVal[0].value;
+    } else {
+      this.options.query = 'Dogs';
+    }
     this.props.searchYouTube(this.options, (videos) => {
       this.setState({
         videolist: videos,
