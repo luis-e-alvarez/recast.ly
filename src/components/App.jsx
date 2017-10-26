@@ -2,23 +2,28 @@
 // import React from 'react';
 
 class App extends React.Component {
-//constructor
   constructor(props) {
     super(props);
     this.state = {
       videolist: window.exampleVideoData,
       video: window.exampleVideoData[0],   
     };
+   
   }
   
-//render 
-
+  selectItem(video){
+    this.setState({
+      video: video,
+    });
+  }
+  
+  
   render() {
     return (
      <div>
     <nav className="navbar">
       <div className="col-md-6 offset-md-3">
-        <div><h5><em>search</em> view goes here</h5></div>
+        <Search />
       </div>
     </nav>
     <div className="row">
@@ -26,7 +31,7 @@ class App extends React.Component {
         <VideoPlayer video={this.state.video}/>
       </div>
       <div className="col-md-5">
-        <VideoList videos={this.state.videolist}/>
+        <VideoList videos={this.state.videolist} onClick={this.selectItem.bind(this)}/>
       </div>
     </div>
   </div>
