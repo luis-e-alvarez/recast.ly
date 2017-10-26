@@ -4,26 +4,48 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.options = {
+      key: 'AIzaSyCqoNpdRDG7Q5YvS45V7UqP15601f3gkUQ',
+      query: null,
+      max: 5
+    },
     this.state = {
       videolist: window.exampleVideoData,
       video: window.exampleVideoData[0],   
     };
+    
    
   }
   
-  selectItem(video){
+  componentDidMount() {
+    this.getVideos('Dogs');
+  }
+  
+  selectItem(video) {
     this.setState({
       video: video,
     });
   }
   
+  changeItems(videos) {
+    console.log(videos);
+    this.setState({
+      videolist: videos,
+    });
+  }
+  
+  getVideos(query) {
+    console.log(query);
+  }
   
   render() {
+    // console.log(Object.keys(x));
+      
     return (
      <div>
     <nav className="navbar">
       <div className="col-md-6 offset-md-3">
-        <Search />
+        <Search onChange={this.getVideos.bind(this)}/>
       </div>
     </nav>
     <div className="row">
@@ -31,11 +53,12 @@ class App extends React.Component {
         <VideoPlayer video={this.state.video}/>
       </div>
       <div className="col-md-5">
-        <VideoList videos={this.state.videolist} onClick={this.selectItem.bind(this)}/>
+        <VideoList videos={this.state.videolist} onClick={this.selectItem.bind(this)} />
       </div>
     </div>
   </div>
     );
+  
   }
 }
 
