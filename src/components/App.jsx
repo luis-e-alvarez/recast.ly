@@ -1,23 +1,24 @@
-
 // import React from 'react';
-
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.options = {
-      key: 'AIzaSyCqoNpdRDG7Q5YvS45V7UqP15601f3gkUQ',
+      key: YOUTUBE_API_KEY,
+      //'AIzaSyCqoNpdRDG7Q5YvS45V7UqP15601f3gkUQ'
       query: '',
       max: 5
     },
     this.state = {
-      videolist: window.exampleVideoData,
-      video: window.exampleVideoData[0],   
+      videolist: exampleVideoData,
+      video: exampleVideoData[0],   
     };
   }
+  
   
   componentDidMount() {
     this.getVideos();
   }
+  
   
   selectItem(video) {
     this.setState({
@@ -27,9 +28,8 @@ class App extends React.Component {
   
   getVideos() {
     var inputVal = document.getElementsByClassName('form-control');
-    console.log(inputVal[0].value);
-    if (inputVal[0].value === '') {
-      this.options.query = 'Dogs';
+    if (inputVal[0] === undefined || inputVal[0].value === '') {
+      this.options.query = 'Super Mario Odyssey';
     } else {
       this.options.query = inputVal[0].value;
     }
